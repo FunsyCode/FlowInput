@@ -1,0 +1,153 @@
+/* Общие стили */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1f1f1f;
+  color: #333;
+  line-height: 1.6;
+  margin: 20px;
+  transition: background-color 0.3s ease-in-out; /* Плавное изменение фона */
+}
+
+/* Хедер */
+header {
+  background-color: #181818;
+  color: white;
+  font-family: 'ST-SimpleSquare';
+  font-size: 20pt;
+  letter-spacing: 2pt;
+  padding: 20px;
+  text-align: center;
+  transition: padding 0.3s ease;
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+header nav a:hover {
+  color: #ffcc00;
+  transform: scale(1.1); /* Увеличение ссылки при наведении */
+}
+
+header nav a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: #ffcc00;
+  transition: width 0.3s ease;
+}
+
+
+/* Страница */
+section {
+  margin: 20px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.6s forwards;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+form label {
+  margin-bottom: 5px;
+}
+
+form input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+form input:focus {
+  border-color: #724caf; /* Подсветка при фокусе */
+}
+
+/* Центрирование кнопок в форме */
+form button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%; /* Кнопка на всю ширину */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 10px; /* Отступ сверху */
+}
+
+form button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px); /* Плавное поднятие кнопки при наведении */
+}
+
+
+/* Плавное изменение фона в футере */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #181818;
+  color: white;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  transition: background-color 0.3s ease;
+}
+
+/* Цвет изменённого футера */
+footer:hover {
+  background-color: #313232;
+}
+
+/* Проекты*/
+.project-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+.project {
+  margin-right: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s; /* Плавная анимация */
+}
+.project:hover {
+  transform: scale(1.05); /* Увеличение при наведении */
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2); /* Тень при наведении */
+}
+img {
+  width: 150px; /* Увеличена ширина изображения */
+  height: auto; /* Автоматическая высота для сохранения пропорций */
+  border-radius: 5px; /* Закругленные углы */
+}
+.project-title {
+  color: white; /* Цвет текста зеленый */
+  border-radius: 10px; /* Закругленные углы */
+  padding: 5px; /* Отступ внутри элемента */
+  background-color: #181818; /* Легкий серый фон для выделения */
+}
+.project a {
+  text-decoration: none; /* Убирает подчеркивание */
+  color: inherit; /* Устанавливает цвет текста по умолчанию */
+}
+#result {
+  margin-top: 20px;
+}
