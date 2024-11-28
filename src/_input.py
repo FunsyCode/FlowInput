@@ -1,32 +1,29 @@
 from ._cursor import *
 from ._colors import *
 
-from colorama import init; init()
 import sys
+
+from colorama import just_fix_windows_console
+
+just_fix_windows_console()
 
 default, color, pos = str, None, int
 
-def userInput(key) -> str:
+def user_input(key) -> str:
     global default, color, pos
 
     if key == 'space':
-        default += ' '
+        default, pos = space(default, pos)
     elif key == 'backspace':
-        pos = Backspace(pos)
-        if pos == 0: default = default
-        else: default = default[:pos-1] + default[pos+1:] + ' '
+        default, pos = backspace(default, pos)
     elif key == 'right':
-        pos = Right(pos)
+        pos = right(default, pos)
     elif key == 'left':
-        pos = Left(pos)
-    elif key == 'enter':
-        print(f"{color}{default} ")
+        pos = left(pos)
     else:
-        default += key; pos = Go(pos)
+        default, pos = go(default, key, pos)
 
-    sys.stdout.write(f"\033[{0}G"); sys.stdout.flush() # Move cursor to start
-    print(f"{color}{default}", end='\r')
-    sys.stdout.write(f"\033[{pos - 1}G"); sys.stdout.flush() # Move cursor to pos
+    print(f"\r{color}{default} \r\033[{pos}C", end='')
 
-def collect(__default: str, __color: None = Color.WHITE, __pos = int) -> None: global default, color, pos; default, color, pos = __default, __color, __pos + 1
+def collect(__default: str, __color: None = Color.WHITE, __pos = int) -> None: global default, color, pos; default, color, pos = __default, __color, __pos
 def get() -> str: return default
