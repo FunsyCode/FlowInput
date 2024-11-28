@@ -1,19 +1,34 @@
-import colorama; colorama.init()
+import colorama
 
 from ._keyboard import *
 from ._colors import *
 from ._input import *
 
-def input(__prompt: str = "", __default: str = "", __color: any = Color.WHITE) -> str:
+colorama.just_fix_windows_console()
 
+def input(prompt: str = '', default: str = '', color: Color | BgColor = Color.WHITE) -> str:
 
-    print(f"{__prompt}"); print(f"{__color}{__default}", end='\r')
+    """Проверяем prompt и default"""
+    if not prompt and default:
+        print(f'\r{color}{default}\r\033[{len(default)}C', end='')
     
-    sys.stdout.write(f"\033[{len(__default)}G")
-    sys.stdout.flush()
+    elif prompt and not default:
+        print(f'{prompt}')
+        print(f'\r{color}\r\033[{(len(default)) - 1}C', end='')
+    
+    elif prompt and default:
+        print(f'{prompt}')
+        print(f'\r{color}{default}\r\033[{len(default)}C', end='')
 
-    collect(__default, __color, (len(__default))) if __color != None else collect(__default, __pos=(len(__default)))
+    else:
+        print(f'\r{color}\r\033[{(len(default)) - 1}C', end='')
 
-    listener = Listener(on_press=userInput); listener.start()
+    """Отслеживание ввода с клавиатуры"""
+    collect(default, color, len(default))
+
+    listener = Listener(on_press=user_input)
+    listener.start()
+
+    print('\u001b[0m')
 
     __default = get(); return __default
