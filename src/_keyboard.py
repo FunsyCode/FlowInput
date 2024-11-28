@@ -5,6 +5,7 @@ class Listener:
         self.on_press = on_press
         self.running = True
 
+    
     def start(self):
         while self.running:
             key = msvcrt.getwch()
@@ -15,7 +16,8 @@ class Listener:
                 if symbol == 'K': self.on_press('left')
                 elif symbol == 'M': self.on_press('right')
 
-            if key == '\r': self.running = False; self.on_press('enter')
+            if key == '\r': self.running = False
             elif key == ' ': self.on_press('space')
             elif key == '\x08': self.on_press('backspace')
+            elif key == 'à': pass
             elif key.isprintable(): self.on_press(key)
